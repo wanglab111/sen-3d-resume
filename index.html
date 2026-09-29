@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <title>王一妍 Keira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- 2026-09-18：网站1 的旁白换「思源宋体细体 + Cormorant Garamond」。
+         原来的 Cormorant Upright + PingFang（黑体）混排其实不高级 —— 文案是**纯中文**，
+         真正决定观感的是中文字形，西文字体只吃到一个标点。中文用黑体配衬线会"各说各话"，
+         所以这里补 `Noto Serif SC`（思源宋体，200/300/400），让中文也走宋体，
+         再用 300 字重 + 0.18em 疏排 —— 疏排是中文高级感最省力的来源。
+         Noto Serif SC 走 Google Fonts 的 unicode-range 分片，只下用到的子集，不是整包。 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mansalva&family=Cormorant+Upright:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&family=Noto+Serif+SC:wght@200;300;400&family=Chiron+GoRound+TC:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

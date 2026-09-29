@@ -1,0 +1,27 @@
+node_modules
+dist
+dist-ssr
+*.tsbuildinfo
+.DS_Store
+*.local
+# vite 每次读配置留下的临时文件（含本机绝对路径，不入库）
+vite.config.ts.timestamp-*.mjs
+.vite
+.playwright-mcp
+*.log
+
+# 作品媒体：视频不入库（体积大），但**照片要入** —— GitHub Pages 是纯静态托管，
+# 没有别的地方放图，不放就是线上缺图。8 张共 1.3MB，可接受。
+# ⚠️ 站点本身公开，所以这些照片本就是公开的；若改成私有仓库，免费账号的 Pages 不可用。
+public/works/*
+!public/works/covers/
+!public/works/photos/
+public/works/**/*.mp4
+public/works/**/*.mov
+
+# 压缩脚本日志
+scripts/compress-media.log
+
+# 本地工具与部署产物（含本地路径/服务器信息，不入库）
+.claude/
+deploy/
