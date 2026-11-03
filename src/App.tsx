@@ -122,7 +122,7 @@ function Hero({
         </div>
       </motion.div>
       <motion.div className="scroll-cue" style={{ opacity: cueOpacity }} aria-hidden="true">
-        <span className="scroll-cue-label">{lang === 'en' ? 'SCROLL' : '向下滚动'}</span>
+        <span className="scroll-cue-label">{lang === 'en' ? 'KEEP SCROLLING' : '一直下滑即可'}</span>
         <span className="scroll-cue-track">
           <span className="scroll-cue-dot" />
         </span>
