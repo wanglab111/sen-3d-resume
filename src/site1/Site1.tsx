@@ -103,19 +103,41 @@ export default function Site1({ onHeight }: { onHeight?: (h: number) => void }) 
   // 由 `stops.ts` 的 FRAME_DIR 按真实像素需求二选一，这里只认 `frameSrc(i)`
   // —— 手机上首次打开少下 8.6MB，这是「手机打开要转很久圈」的根因，画面本身没改。
   // 本地是瞬时的；真机上会边滚边补齐（没准备好的帧就保持上一帧，不闪黑）。
+  // ⚠️ 2026-11-03：**不能 189 张一起发**。GitHub Pages（Fastly CDN）对单域突发
+  //   189 个请求会整批挂起 —— 实测 T+60s 一个都没回（frameDone=0），而且同一条
+  //   HTTP/2 连接上的 glb/hdr 流也被压在后面，useProgress 卡死 → loading 屏 164s。
+  //   改成小并发队列按序拉：f000 最先就绪（ready 一到就撤 s1-loading），其余边滚
+  //   边补 —— paint() 对未就绪帧本来就返回 false 保持上一帧，快速滚动也不闪黑。
   const frames = useMemo(() => {
     const rtNow = rt.current
     const arr: HTMLImageElement[] = []
     for (let i = 0; i < FRAME_COUNT; i++) {
       const img = new Image()
       img.decoding = 'async'
+      arr.push(img)
+    }
+    const CONCURRENCY = 4
+    let next = 0
+    let done = 0
+    const start = (i: number) => {
+      const img = arr[i]
       img.onload = () => {
         rtNow.loaded++
         if (i === 0) setReady(true)
+        done++
+        pump()
+      }
+      // 失败也要放行队列 —— 一张坏帧不能卡死后面全部
+      img.onerror = () => {
+        done++
+        pump()
       }
       img.src = frameSrc(i)
-      arr.push(img)
     }
+    const pump = () => {
+      while (next < FRAME_COUNT && next - done < CONCURRENCY) start(next++)
+    }
+    pump()
     return arr
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
