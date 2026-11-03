@@ -11,9 +11,10 @@ export default defineConfig({
   // 打包后资源用相对路径（dist/index.html 引用 ./assets/...，可放任意子目录/直接打开）
   base: './',
   plugins: [react()],
-  // host: true → 绑 0.0.0.0（不绑就只监听 127.0.0.1，反代进不来）
+  // 本地开发只绑 127.0.0.1（开发预览只在本机/面板访问，不对外暴露）。
+  // 线上发布走 preview，preview.host 仍是 true（绑 0.0.0.0）保证外网可访问。
   // allowedHosts: true → Vite 5.4.12+ 默认会拦掉非本机的 Host 头，
   //   发布后访问域名会直接 403 "Blocked request. This host is not allowed."，必须放开
-  server: { host: true, port, allowedHosts: true },
+  server: { host: '127.0.0.1', port, allowedHosts: true },
   preview: { host: true, port, allowedHosts: true },
 })

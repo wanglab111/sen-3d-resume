@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { CONTACT_CARD } from '../chat/config'
+import { CONTACT_CARD, IS_NATIVE_DOMAIN } from '../chat/config'
 import { openChat } from '../chat/open'
 
 // ============================================================================
@@ -79,15 +79,15 @@ export default function Contact() {
             <span className="ct-k">现在在</span>
             <span className="ct-v">上海</span>
           </div>
-          {/* AI 分身的第二个入口。
-              为什么滑到底还要放一个：右下角那个圆钮是「闲着才开口」的，
-              不主动找人；而滑到这一屏的人本来就是想找个方式联系她 ——
-              在这里给一个明确的入口，比让他去猜右下角那个小圆点好。
-              它自己不持有面板状态，只发一个事件（见 chat/open.ts）。 */}
-          <button type="button" className="contact-card contact-card--chat" onClick={openChat}>
-            <span className="ct-k">{CONTACT_CARD.label}</span>
-            <span className="ct-v">{CONTACT_CARD.value}</span>
-          </button>
+          {/* AI 分身的第二个入口（见 chat/open.ts）。
+              非原生域名（GitHub Pages / 自有域名）下分身不可用，整块不渲染，
+              避免访客点开看到「这个页面要在它自己的域名下打开才管用」。 */}
+          {IS_NATIVE_DOMAIN && (
+            <button type="button" className="contact-card contact-card--chat" onClick={openChat}>
+              <span className="ct-k">{CONTACT_CARD.label}</span>
+              <span className="ct-v">{CONTACT_CARD.value}</span>
+            </button>
+          )}
         </div>
       </motion.div>
     </section>

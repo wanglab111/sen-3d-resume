@@ -302,12 +302,27 @@ export const WORKS: Record<'zh' | 'en', WorksLang> = {
         id: 'graphics',
         no: '04',
         title: '旅途 · 数字游民',
-        tagline: '一个人去的三个国家',
+        tagline: '一个人去的多国旅居',
         items: [
+          {
+            name: '欧洲',
+            slug: 'travel-europe',
+            photos: [
+              photo('travel-europe-1.jpg', 1187, 1732, '欧洲 · 罗马特雷维喷泉'),
+              photo('travel-europe-2.jpg', 1824, 1578, '欧洲 · 佛罗伦萨圣母百花大教堂前'),
+              photo('travel-europe-3.jpg', 1824, 1486, '欧洲 · 梵蒂冈圣彼得广场'),
+              photo('travel-europe-4.jpg', 1440, 1920, '欧洲 · 巴塞罗那圣家堂彩窗'),
+            ],
+          },
           {
             name: '阿联酋',
             slug: 'travel-uae',
             photos: [photo('travel-uae-1.jpg', 1100, 825, '阿联酋 · 迪拜夜晚的草坪聚会')],
+          },
+          {
+            name: '土耳其',
+            slug: 'travel-turkey',
+            photos: [photo('travel-turkey-1.jpg', 1440, 2151, '土耳其 · 伊斯坦布尔海峡夜景')],
           },
           {
             name: '埃及',
@@ -472,12 +487,27 @@ export const WORKS: Record<'zh' | 'en', WorksLang> = {
         id: 'graphics',
         no: '04',
         title: 'Travel · Digital Nomad',
-        tagline: 'Three countries, travelling solo',
+        tagline: 'Solo travel across countries',
         items: [
+          {
+            name: 'Europe',
+            slug: 'travel-europe',
+            photos: [
+              photo('travel-europe-1.jpg', 1187, 1732, 'Europe · Trevi Fountain, Rome'),
+              photo('travel-europe-2.jpg', 1824, 1578, 'Europe · by the Duomo in Florence'),
+              photo('travel-europe-3.jpg', 1824, 1486, "Europe · St. Peter's Square, Vatican"),
+              photo('travel-europe-4.jpg', 1440, 1920, 'Europe · Sagrada Família stained glass, Barcelona'),
+            ],
+          },
           {
             name: 'UAE',
             slug: 'travel-uae',
             photos: [photo('travel-uae-1.jpg', 1100, 825, 'UAE · a night gathering on the lawn in Dubai')],
+          },
+          {
+            name: 'Turkey',
+            slug: 'travel-turkey',
+            photos: [photo('travel-turkey-1.jpg', 1440, 2151, 'Turkey · Istanbul at night by the Bosphorus')],
           },
           {
             name: 'Egypt',

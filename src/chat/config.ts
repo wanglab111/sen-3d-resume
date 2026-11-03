@@ -22,6 +22,16 @@ export const PUBLIC_CONFIG = {
   publishableKey: 'wbpk_D7DvVInXMcsopSYmDNfo0y_3PGNP9HgUhrfNIIyiBXsT7YaJloRWdgf',
 }
 
+/* ── 是否跑在「原生域名」下 ──────────────────────────────────────────────
+   聊天走的是本站自己域名下的免密钥云通道，服务端按 Origin 精确匹配，
+   所以**只有 app.workbuddy.host 这个域名下分身才可用**。
+   站点搬到 GitHub Pages / 自有域名后，这个判断会是 false —— 此时：
+     · 收尾板块的「AI 分身」卡（Contact.tsx）不渲染；
+     · 点 3D 人物也只卖萌、不再弹面板（AvatarChat 的入口事件在这里被拦掉）。
+   这样在分享链接里点开时，不会看到「这个页面要在它自己的域名下打开才管用」。 */
+export const IS_NATIVE_DOMAIN =
+  typeof window !== 'undefined' && window.location.hostname.endsWith('app.workbuddy.host')
+
 /* ── 人格本体 ────────────────────────────────────────────────────────────
    `system-prompt.txt` 是**原样**从接入包里拷过来的（md5
    27f649f4fb1e75a9422b9cc66e4a1fc5，8408 字节），一个字都没改、没总结、没删减。

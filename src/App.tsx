@@ -31,7 +31,7 @@ const COPY = {
   en: {
     title: 'About Me',
     paragraphs: [
-      'Solo long-stays as a digital nomad — the UAE, Egypt, Thailand',
+      'Solo long-stays as a digital nomad — Europe, the UAE, Turkey, Egypt, Thailand',
       'Appeared in TVCs for Shanghai Xintiandi and Delta Force',
       'Deep in AI: AIGC, agents, and AI user growth for North America',
     ],
@@ -39,7 +39,7 @@ const COPY = {
   zh: {
     title: 'About Me',
     paragraphs: [
-      '独自旅居（数字游民）阿联酋，埃及，泰国',
+      '独自旅居（数字游民）欧洲，阿联酋，土耳其，埃及，泰国',
       '参演上海新天地、三角洲行动TVC',
       '深耕 AI（AIGC、Agent、AI 用户增长（北美））',
     ],

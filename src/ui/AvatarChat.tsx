@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { COPY, LIMITS } from '../chat/config'
+import { COPY, IS_NATIVE_DOMAIN, LIMITS } from '../chat/config'
 import {
   friendly,
   getConversationId,
@@ -135,8 +135,14 @@ export default function AvatarChat({ visible }: { visible: boolean }) {
 
   // 两个入口都在这个事件上：圆钮 / 收尾那张卡（立刻开），点她（延迟开）
   useEffect(() => {
-    const onNow = () => openPanel()
-    const onSoon = () => openSoon()
+    const onNow = () => {
+      if (!IS_NATIVE_DOMAIN) return // 非原生域名下分身不可用，入口事件拦掉
+      openPanel()
+    }
+    const onSoon = () => {
+      if (!IS_NATIVE_DOMAIN) return
+      openSoon()
+    }
     window.addEventListener(CHAT_OPEN_EVENT, onNow)
     window.addEventListener(CHAT_OPEN_SOON_EVENT, onSoon)
     return () => {

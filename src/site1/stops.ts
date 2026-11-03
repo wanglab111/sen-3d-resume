@@ -2,7 +2,7 @@
    网站1（滚动擦洗开场）的内容表 —— 改文案 / 改停留点只动这个文件
    ------------------------------------------------------------------
    素材：用户自制的 18.9s 角色影片，已抽成 189 张 1600×900 的 JPEG（10fps）
-         web/public/site1/frames/f000..f188.jpg
+         web/public/site1/frames/f000..f188.webp
    帧号 = 秒数 × 10（f046 就是第 4.6 秒）
 
    ⚠️ 4 个停留点是**用户指着图给出来的**（2026-09-18），不是我猜的：
@@ -221,8 +221,8 @@ export const stepDuration = (from: number, to: number) => {
 }
 
 /* ── 帧图有**两套**（生成脚本 `_tools/site1_frames_mobile.py`）──────────
-     桌面 `site1/frames/f###.jpg`  ：1600×900，189 张 ≈ 11MB
-     手机 `site1/frames-m/f###.webp`：1080×608，189 张 ≈ 2.4MB
+     桌面 `site1/frames/f###.webp` ：1600×900，189 张 ≈ 5.7MB（WebP）
+     手机 `site1/frames-m/f###.webp`：1080×608，189 张 ≈ 2.8MB
    两套**互斥加载**（这里选哪套，就只请求哪套）。手机上首次打开少下 8.6MB ——
    这是"手机上要转很久圈"的唯一根因，画面本身没有任何改动。
 
@@ -248,5 +248,5 @@ export const frameSrc = (i: number) => {
   const n = String(i).padStart(3, '0')
   return FRAME_DIR === 'frames-m'
     ? `${import.meta.env.BASE_URL}site1/frames-m/f${n}.webp`
-    : `${import.meta.env.BASE_URL}site1/frames/f${n}.jpg`
+    : `${import.meta.env.BASE_URL}site1/frames/f${n}.webp`
 }
